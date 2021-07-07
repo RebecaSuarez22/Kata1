@@ -5,7 +5,8 @@
  */
 package kata1;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.Period;
 
 /**
  *
@@ -13,9 +14,9 @@ import java.util.Date;
  */
 public class Person {
     private String name;
-    private Date birtdate;
+    private LocalDate birtdate;
 
-    public Person(String name, Date birtdate) {
+    public Person(String name, LocalDate birtdate) {
         this.name = name;
         this.birtdate = birtdate;
     }
@@ -24,7 +25,7 @@ public class Person {
         return name;
     }
 
-    public Date getBirtdate() {
+    public LocalDate getBirtdate() {
         return birtdate;
     }
 
@@ -32,14 +33,17 @@ public class Person {
         this.name = name;
     }
 
-    public void setBirtdate(Date birtdate) {
+    public void setBirtdate(LocalDate birtdate) {
         this.birtdate = birtdate;
     }
     
     public int getAge(){
-        return (int) (new Date().getTime() - birtdate.getTime()/ 31536000000L);
+        LocalDate hoy = LocalDate.now();
+        Period period = Period.between(birtdate,hoy);
+        return (period.getYears());
     }
     
+   
     
     
 }
